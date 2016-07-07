@@ -21,3 +21,45 @@ module AppConfig
   end
 
 end
+
+#
+# AppConfig.establish_connection
+#
+# p = Teacher.first
+# p.hire_date = nil
+# p.retirement_date = nil
+# p.save
+#
+# x = Student.first
+# x.teacher = Teacher.first
+# x.save
+#
+# y = Student.last
+# y.teacher = Teacher.first
+# y.save
+#
+# t = Teacher.first
+# t.students
+# t.save
+# t.reload
+# # # # #
+# # # # # #
+# # # # #
+# #
+# t.hire_date = '1970-01-01'
+# t.retirement_date = '1990-01-01'
+
+
+
+# t.save
+# t.reload
+
+
+
+#  bundle exec rspec spec/new_student_tasks.rb
+# pry -r './app_config.rb'
+# AppConfig.establish_connection
+# touch $(date '+%Y%m%d%H%M%S')_migration_name.rb
+
+# rake db:drop db:create db:migrate
+#
