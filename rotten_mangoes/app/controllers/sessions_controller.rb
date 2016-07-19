@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-  before_filter :cant_signup_or_login
-  
+  before_filter :cant_signup_or_login, except: [:destroy]
+
   def new
   end
 
@@ -17,7 +17,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    # session[:user_id] = nil
+    session.delete(:user_id)
     redirect_to movies_path, notice: "Adios!"
   end
 end

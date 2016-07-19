@@ -1,7 +1,9 @@
+require 'pry'
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  helper_method :current_user, :admin_only
 
   protected
 
@@ -16,13 +18,17 @@ class ApplicationController < ActionController::Base
     if current_user
       flash[:alert] = "You are already logged in."
       redirect_to movies_path
-    end 
+    end
   end
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  helper_method :current_user
-
+  def admin_only
+    if !current_user.admin
+      flash[:alert] = "You are not admin."
+      redirect_to movies_path
+    end
+  end
 end
