@@ -1,4 +1,4 @@
-<%= form_for @user do |f| %>
+<%= form_for @user, :url => admin_user_path do |f| %>
 
   <div>
     <%= f.label :firstname %><br>
@@ -6,15 +6,20 @@
   </div>
   <div>
     <%= f.label :lastname %><br>
-    <%= f.date_field :lastname %>
+    <%= f.text_field :lastname %>
   </div>
   <div>
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
   <div>
-    <%= f.label :admin %><br>
-    <%= f.number_field :admin %>
+    <%= f.label "Admin" %>
+    <%= f.check_box :admin %> <br />
+    <!-- <%= f.label :admin %>
+    <%= check_box_tag(:admin) %>
+    <%= label_tag(:admin, true) %>
+    <%= check_box_tag(:admin) %>
+    <%= label_tag(:admin, false) %> -->
   </div>
   <div>
     <%= f.submit "Submit" %>
