@@ -6,6 +6,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        <th><%= link_to "First Name", admin_users_path(sort: :id), class: "deco-none"%></th>
         <th><%= link_to "First Name", admin_users_path(sort: :firstname), class: "deco-none"%></th>
         <th><%= link_to "Last Name", admin_users_path(sort: :lastname), class: "deco-none"%></th>
         <th><%= link_to "Email", admin_users_path(sort: :email), class: "deco-none"%></th>
@@ -14,7 +15,28 @@
       </tr>
     </thead>
     <tbody>
-
+      <% @users.each do |user| %>
+         <tr>
+         <td>
+            <%= link_to user.id, admin_user_path(user) %>
+         </td>
+          <td>
+             <%= user.firstname %>
+          </td>
+          <td>
+            <%= user.lastname %>
+          </td>
+           <td>
+             <%= user.email %>
+           </td>
+           <td>
+              <%= user.created_at %>
+           </td>
+           <td>
+             <%= user.admin %>
+           </td>
+         </tr>
+      <% end %>
     </tbody>
   </table>
 </div>
