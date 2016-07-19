@@ -1,7 +1,7 @@
 class Movie < ApplicationRecord
   has_many :reviews
   has_and_belongs_to_many :actors
-
+  mount_uploader :poster_image_url, ImageUploader
 
   validates :title,
     presence: true

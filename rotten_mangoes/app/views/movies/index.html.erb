@@ -1,9 +1,9 @@
 <h1>Rotten Mangoes</h1>
    <%= link_to "Submit a movie!", new_movie_path %>
-   <!-- <hr>
+   <hr>
 
-   <% @movies.each do |movie| %>
-     <%= link_to image_tag(movie.poster_image_url), movie_path(movie) %>
+   <!-- <% @movies.each do |movie| %>
+     <%= link_to image_tag(movie.poster_image_url.thumb.url), movie_path(movie) %>
      <h2><%= link_to movie.title, movie_path(movie) %></h2>
      <h3><%= movie.release_date %></h3>
      <h4>Dir. <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes</h4>
@@ -17,7 +17,7 @@
      <table class="table table-striped">
        <thead>
          <tr>
-           <!-- <th><a href="#" class="deco-none"> Movie Title </a></th> -->
+           <th><%= link_to "Movie", movies_path(sort: :poster_image_url), class: "deco-none"%></th>
            <th><%= link_to "Movie Title", movies_path(sort: :title), class: "deco-none"%></th>
            <th><%= link_to "Release Date", movies_path(sort: :release_date), class: "deco-none"%></th>
            <th><%= link_to "Director", movies_path(sort: :director), class: "deco-none"%></th>
@@ -28,9 +28,9 @@
        <tbody>
         <% @movies.each do |movie| %>
            <tr>
-            <!-- <td>
-               <%= link_to image_tag(movie.poster_image_url), movie_path(movie) %>
-            </td> -->
+            <td>
+               <%= link_to image_tag(movie.poster_image_url.thumb.url), movie_path(movie) %>
+            </td>
             <td>
               <%= link_to movie.title, movie_path(movie) %>
             </td>
