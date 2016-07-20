@@ -35,6 +35,10 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  def testing
+    render "WTF"
+  end
+
   protected
 
   def user_params

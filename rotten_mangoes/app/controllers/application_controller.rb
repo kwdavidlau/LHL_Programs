@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  helper_method :current_user, :admin_only
+  helper_method :current_user, :admin_only, :pretend_user
 
   protected
 
@@ -20,6 +20,11 @@ class ApplicationController < ActionController::Base
       redirect_to movies_path
     end
   end
+
+  # def pretend_user
+  #   @pretend_user ||= User.find(params[:id])
+  #   redirect_to params[:redirect]
+  # end
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]

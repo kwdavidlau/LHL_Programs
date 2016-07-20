@@ -1,9 +1,31 @@
 # require 'pry'
 class MoviesController < ApplicationController
   before_filter :restrict_access
+  # before_filter :pretend_user
 
   def index
-    @movies = Movie.all.order(params[:sort])
+
+    if params[:sort]
+      @movies = Movie.all.order(params[:sort])
+    else
+      @movies = Movie.all
+      @movies = @movies.where(title: [params[:title]]) unless params[:title].nil? || params[:title].empty?
+      @movies = @movies.where(director: [params[:director]]) unless params[:director].nil? || params[:director].empty?
+      if !params[:runtime_in_minutes].nil? && !params[:runtime_in_minutes].empty?
+        case params[:runtime_in_minutes]
+        when "Under 90 minutes"
+          
+          @movies = @movies.where('runtime_in_minutes < ?', 90)
+        when "Between 90 and 120 minutes"
+          @movies = @movies.where('runtime_in_minutes > ?', 90).where('runtime_in_minutes < ?', 120)
+        when "Over 120 minutes"
+          @movies = @movies.where('runtime_in_minutes > ?', 120)
+        else
+          @movies
+        end
+      end
+
+    end
   end
 
   def show
