@@ -37,8 +37,18 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-    redirect_to admin_users_path
+    respond_to do |format|
+      if @user.destroy
+        # Tell the UserMailer to send a welcome email after save
+        binding.pry
+        UserMailer.delete_email(@user).deliver
+        format.html { redirect_to admin_users_path, notice: 'User was successfully deleted.' }
+        #created creates 201 status for browser
+      else
+        binding.pry
+        format.html { redirect_to admin_users_path }
+      end
+    end
   end
 
   protected
