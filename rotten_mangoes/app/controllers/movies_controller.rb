@@ -4,11 +4,31 @@ class MoviesController < ApplicationController
   # before_filter :pretend_user
 
   def index
-
     @movies = Movie.all
-    @movies = Movie.by_title(params) unless params[:title].nil? || params[:title].empty?
-    @movies = @movies.by_director(params) unless params[:director].nil? || params[:director].empty?
+    # @movies = Movie.by_title(params) unless params[:title].nil? || params[:title].empty?
+    # @movies = @movies.by_director(params) unless params[:director].nil? || params[:director].empty?
+
+    @movie1 = Movie.by_title(params) unless params[:search].nil? || params[:search].empty?
+    #search for movies under the title parameter as long as its not empty
+    @movie2 = Movie.by_director(params) unless params[:search].nil? || params[:search].empty?
+    #search for movies under the director parameter as long as its not empty
     @movies = @movies.by_runtime(params) unless params[:runtime_in_minutes].nil? || params[:runtime_in_minutes].empty?
+    #search for movies under runtime parameter as long as its not empty
+
+    # if (!@movie1.nil? && !@movie1.empty?) || (!@movie2.nil? && !@movie2.empty?)
+    if (!@movie1.nil? || !@movie2.nil?) && (params[:runtime_in_minutes].nil? || params[:runtime_in_minutes].empty?)
+      #there are movies when you input a search for title/director, but with no input from runtime
+        @movies = @movie1
+        @movies = @movies + @movie2
+    elsif (!@movie1.nil? || !@movie2.nil?) && (!params[:runtime_in_minutes].nil? || !params[:runtime_in_minutes].empty?)
+      #there are movies when you input a search for title/director AND you also have a search term for run_time
+        @movies = Movie.by_runtime(params)
+        @movie_temp1 = @movies.by_title(params)
+        @movie_temp2 = @movies.by_director(params)
+        @movies = @movie_temp1
+        @movies = @movies + @movie_temp2
+    end
+
 
     # if params[:sort]
     #   @movies = Movie.all.order(params[:sort])

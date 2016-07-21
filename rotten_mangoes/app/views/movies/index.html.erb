@@ -9,13 +9,17 @@
 
 
      <%= form_tag movies_path, method: "get" do %>
-      <p>
+      <!-- <p>
         <%= label_tag(:title, "Title:") %>
         <%= text_field_tag :title, params[:title] %>
       </p>
       <p>
         <%= label_tag(:director, "Director:") %>
         <%= text_field_tag :director, params[:director] %>
+      </p> -->
+      <p>
+        <%= label_tag(:search, "Search Director or Title:") %>
+        <%= text_field_tag :search, params[:search] %>
       </p>
       <p>
         <%= label_tag(:runtime_in_minutes, "Runtime:") %>
@@ -38,7 +42,28 @@
          </tr>
        </thead>
        <tbody>
-          <%= render 'movie' %>
+        <% @movies.each do |movie| %>
+           <tr>
+            <td>
+               <%= link_to image_tag(movie.poster_image_url.thumb.url), movie_path(movie) %>
+            </td>
+            <td>
+              <%= link_to movie.title, movie_path(movie) %>
+            </td>
+             <td>
+               <%= movie.release_date %>
+             </td>
+             <td>
+                <%= movie.runtime_in_minutes %>
+             </td>
+             <td>
+                <%= movie.director %>
+             </td>
+             <td>
+               <%= movie.description %>
+             </td>
+           </tr>
+        <% end %>
        </tbody>
      </table>
    </div>

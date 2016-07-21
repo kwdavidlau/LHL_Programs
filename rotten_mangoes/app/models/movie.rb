@@ -3,9 +3,10 @@ class Movie < ApplicationRecord
   has_and_belongs_to_many :actors
   mount_uploader :poster_image_url, ImageUploader
 
-  scope :by_title,          -> (params) { where(title: params[:title]) }
-  # scope :by_title_and_director,     -> { by_title.where(director: params[:director]) }
-  scope :by_director,       -> (params) { where(director: params[:director])}
+  scope :by_title,          -> (params) { where(title: params[:search]) }
+  scope :by_director,       -> (params) { where(director: params[:search]) }
+  # scope :by_title_or_director -> (params) {} "#{name}%"
+
   scope :by_runtime,        -> (params) {
     choice = params[:runtime_in_minutes]
     if choice == "Under 90 minutes"
