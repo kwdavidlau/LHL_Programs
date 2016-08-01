@@ -1,0 +1,70 @@
+<style>
+  /**** YOU MAY ADD OR MODIFY CSS BELOW ****/
+  .question{
+    background-color: black;
+    color: white;
+  }
+
+  /*#navbar li ul li {
+    display: none;
+  }
+
+  #navbar li ul li.show {
+    display: unset;
+  }*/
+
+  /**** STOP MODIFYING HERE. ****/
+</style>
+
+<p>Convert the markup below into a nav menu that has a black background, white text, and the nested UL's become visible when a user mouses over the top level LI element, but disappear when the mouse moves off, like a traditional navigation menu.</p>
+
+<p>Edit the the page source to begin.</p>
+
+<div class="question">
+  <ul id="navbar">
+    <li>Module 1
+      <ul>
+        <li><a href="#">Basic Ruby Syntax</a></li>
+        <li><a href="#">Methods</a></li>
+        <li><a href="#">OOP Principles</a></li>
+        <li><a href="#">Modules and Mixins</a></li>
+      </ul>
+    </li>
+    <li>Module 2
+      <ul>
+        <li><a href="#">SQL Syntax</a></li>
+        <li><a href="#">ORM</a></li>
+        <li><a href="#">ActiveRecord</a></li>
+        <li><a href="#">Migrations</a></li>
+        <li><a href="#">Sinatra</a></li>
+      </ul>
+    </li>
+    <li>Module 3
+      <ul>
+        <li><a href="#">Rails</a></li>
+        <li><a href="#">HTML5 Semantic Markup</a></li>
+        <li><a href="#">JavaScript</a></li>
+        <li><a href="#">jQuery</a></li>
+        <li><a href="#">AJAX</a></li>
+        <li><a href="#">APIs</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<script>
+
+  $(function() {
+    $("#navbar li ul li").hide()
+    /**** YOU MAY MODIFY THE CODE BELOW ****/
+    $("#navbar > li").hover(
+      function(){
+        $('ul li', this).stop().slideDown(100);
+      },
+      function(){
+        $('ul li', this).stop().slideUp(100);
+      });
+    /**** STOP MODIFYING HERE. ****/
+  });
+
+</script>

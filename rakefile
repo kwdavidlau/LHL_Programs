@@ -1,0 +1,13 @@
+# task :default do
+#   puts "Hello world"
+# end
+
+desc 'Ring bell'
+task :ring do
+  puts "Bell is ringing."
+end
+
+desc 'Enter home'
+task :enter => :ring do
+  puts "Entering home!"
+end

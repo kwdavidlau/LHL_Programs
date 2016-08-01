@@ -3,5 +3,4 @@ class AddingColumns < ActiveRecord::Migration
     add_column :teachers, :hire_date, :date
     add_column :teachers, :retirement_date, :date
   end
-
 end

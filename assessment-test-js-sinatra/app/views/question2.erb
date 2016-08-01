@@ -1,0 +1,44 @@
+<p>Write a function that takes in an array of values, and outputs every <strong>third</strong> element, line by line, by appending them into the Gray Box below. So you will skip the first two elements, append the third, skip the fourth and fifth, etc.<p>
+
+<p>Rules for what to output in the box:</p>
+<ul>
+  <li>If the value is the name of a day of the week, print it in blue.</li>
+  <li>If the value is a number, print it italicized.</li>
+  <li>Otherwise, leave it unstyled.</li>
+</ul>
+
+<p>Edit the page source to begin.</p>
+
+<div class='question'>
+  <h2>Gray Box</h2>
+</div>
+
+<script>
+
+  $(function() {
+
+    function addItemsToGrayBox(items) {
+      /**** YOU MAY MODIFY THE CODE BELOW ****/
+      // items.forEach(function(word){
+      for (var array in items){
+        // debugger
+        if ((array+1) % 3 === 0){
+          // debugger
+          if (items[array] === "Monday" || items[array] === "Tuesday" || items[array] === "Wednesday" || items[array] === "Thursday" || items[array] === "Friday" || items[array] === "Saturday" || items[array] === "Sunday"){
+            $("h2").append("<p style='color:green;'>" + items[array] + "</p>");
+          }
+          else if ($.isNumeric(items[array])) {
+            $("h2").append("<p style='font-style:italic;'>" + items[array] + "</p>");
+          }
+          else {
+            $("h2").append("<p>" + items[array] + "</p>");
+          }
+        }
+      };
+      /**** STOP MODIFYING HERE. ****/
+    }
+
+    addItemsToGrayBox(["Toast", {key: "Value"}, "Tuesday", "Ointment", "Saturday", 817, "Lurk", ["Battery"], "Friday", 8, 345.3, "Birthday", "a", "Rubber Duck"]);
+  });
+
+</script>

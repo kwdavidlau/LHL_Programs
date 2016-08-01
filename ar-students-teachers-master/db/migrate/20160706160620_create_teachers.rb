@@ -1,5 +1,4 @@
 class CreateTeachers < ActiveRecord::Migration
-
   def change
     # Add code to create the table here
     # HINT: check out ActiveRecord::Migration.create_table
@@ -13,5 +12,4 @@ class CreateTeachers < ActiveRecord::Migration
       # Use the AR migration guide for syntax reference
     end
   end
-
 end

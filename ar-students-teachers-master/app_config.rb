@@ -23,31 +23,31 @@ module AppConfig
 end
 
 #
-# AppConfig.establish_connection
-#
-# p = Teacher.first
-# p.hire_date = nil
-# p.retirement_date = nil
-# p.save
-#
-# x = Student.first
-# x.teacher = Teacher.first
-# x.save
-#
-# y = Student.last
-# y.teacher = Teacher.first
-# y.save
-#
-# t = Teacher.first
-# t.students
-# t.save
-# t.reload
+AppConfig.establish_connection
+
+p = Teacher.first
+p.hire_date = nil
+p.retirement_date = nil
+p.save
+
+x = Student.first
+x.teacher = Teacher.first
+x.save
+
+y = Student.last
+y.teacher = Teacher.first
+y.save
+
+t = Teacher.first
+t.students
+t.save
+t.reload
+# # # #
 # # # # #
-# # # # # #
-# # # # #
-# #
-# t.hire_date = '1970-01-01'
-# t.retirement_date = '1990-01-01'
+# # # #
+#
+t.hire_date = '1970-01-01'
+t.retirement_date = '1990-01-01'
 
 
 
