@@ -1,6 +1,8 @@
 var request = require('request');
 let cheerio = require('cheerio')
-
+var fs = require('fs')
+var csvWriter = require('csv-write-stream')
+var writer = csvWriter({ headers: ["permissions", "link", "link type"]})
 
 request('http://substack.net/images/', function (error, response, body) {
   if (!error && response.statusCode == 200) {
@@ -13,19 +15,22 @@ request('http://substack.net/images/', function (error, response, body) {
 function logging(text){
   var file_permission = []
   let $ = cheerio.load(text)
+  writer.pipe(fs.createWriteStream('out.csv'))
 
   $("tr").each(function(){
-    // debugger;
-    console.log($(this).find('td:first-child').text());
-    console.log($(this).find('td:nth-child(3) a').attr('href'));
-    console.log($(this).find('td:nth-child(3)').text().split('.').pop());
+    var permission = $(this).find('td:first-child').text();
+    var link = $(this).find('td:nth-child(3) a').attr('href');
+    var imagetype = $(this).find('td:nth-child(3)').text().split('.').pop();
+    writer.write([permission, link, imagetype])
+    // file_permission = permission + ',' + link + ',' + imagetype
+    // console.log(file_permission)
   })
-
-  // $("tr td:nth-child(3)").each(function(){
-  //   // debugger;
-  //   console.log($(this).find('href'));
-  // })
+  writer.end()
 }
+
+
+
+
 
 
 // let $ = cheerio.load('<h2 class="title">Hello world</h2>')
